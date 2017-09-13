@@ -1,4 +1,5 @@
 <?php
+
 try
 {
 // On se connecte à MySQL
@@ -32,7 +33,8 @@ $pass = $_POST["mot_de_pass"];
 
 	/*$image = addslashes(file_get_contents($_FILE['image']['tmp_name']));*/
 
-$resultat = $bdd->prepare('INSERT INTO users (login, mot_de_pass, image) VALUES ('.$bdd->quote($login).','.$pass.','.$bdd->quote($image).')')->execute();
+$resultat = $bdd->prepare('INSERT INTO users (login, mot_de_pass, image) VALUES ('.$bdd->quote($login).','.$bdd->quote($pass).','.$bdd->quote($image).')')->execute();
+
 
 if ($resultat) {
 	$_SESSION['user']=$id;
@@ -42,8 +44,8 @@ if ($resultat) {
 	
 ?>
 <div class="container">
-	<div class="row" style="border:1px solid black; margin: 5%;">
-		<div class="col-md-4" style="border: 1px solid red; margin-left: 30%;">
+	<div class="row registre">
+		<div class="col-md-4 formRe">
 			<form method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="login">Login</label>

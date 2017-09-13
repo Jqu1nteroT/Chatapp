@@ -22,14 +22,14 @@ try
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-10 test">
 				<form class="form" method="POST" action="msg.php" id="msg">
-					<div class="form-group area" id="mesag" style="overflow-y: auto;">
+					<div class="form-group area" id="mesag">
 						
 					</div>
 					<div class="form-group col-xs-10 col-sm-10 col-md-10">
 						<textarea id="usermsg" class="form-control" name="usermsg" rows="1" required></textarea>
 					</div>
 					<div class="col-xs-2 col-sm-2 col-md-2">
-						<button onclick="cambio()" type="button" form="msg" class="btn btn-primary">Send</button>
+						<button onclick="cambio(true)" type="button" form="msg" class="btn btn-primary">Send</button>
 					</div>
 				</form>
 			</div>
