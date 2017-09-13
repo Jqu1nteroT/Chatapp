@@ -1,17 +1,7 @@
 <?php 
 session_start();
+include('conexion.php');
 
-try
-    {
-    // On se connecte à MySQL
-    $bdd = new PDO('mysql:host=localhost;dbname=chat;charset=utf8', 'pablo', 'user');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(Exception $e)
-    {
-    // En cas d'erreur, on affiche un message et on arrête tout
-          die('Erreur : '.$e->getMessage());
-    }
     $pq = $_POST["usr"];
 	$pw = $_POST["pwd"];
 	$usOk = "";

@@ -1,16 +1,6 @@
 <?php
+include('conexion.php');
 
-try
-{
-// On se connecte à MySQL
-$bdd = new PDO('mysql:host=localhost;dbname=chat;charset=utf8', 'pablo', 'user');
-$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch(Exception $e)
-{
-// En cas d'erreur, on affiche un message et on arrête tout
-die('Erreur : '.$e->getMessage());
-}
 $resultat = false;
 if (isset($_FILES["imagen"])) {
 
@@ -34,7 +24,9 @@ $pass = $_POST["mot_de_pass"];
 	/*$image = addslashes(file_get_contents($_FILE['image']['tmp_name']));*/
 
 $resultat = $bdd->prepare('INSERT INTO users (login, mot_de_pass, image) VALUES ('.$bdd->quote($login).','.$bdd->quote($pass).','.$bdd->quote($image).')')->execute();
-
+$resultat2 = $bdd->query("SELECT * FROM users where login = '$login'");
+$new = $resultat2->fetch();
+	$id = $new['idusers'];	
 
 if ($resultat) {
 	$_SESSION['user']=$id;
@@ -43,6 +35,35 @@ if ($resultat) {
 }
 	
 ?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="autor" content="Juan P Quintero">
+		<meta name="description" content="AppChat pour un chat global">
+		<meta name="keywords" content="chat, app, global, free">
+		<title>AppChat</title>
+		<link rel="icon" type="image/svg" href="image/LogoChar.svg" sizes="16x16">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scrips.js"></script>
+	</head>
+	<body>
+		<!--Section header-->
+		<section id="header">
+			<div class="container-fluid">
+				<div class="row">					
+					<nav class="navbar navbar-default fixed-top">
+						<div class="navbar-header">
+							<a href="index.php?action=login"><img class="logo" src="image/LogoChar.svg" alt="Logo"></a>
+						</div>
+						</form>
+					</nav>
+				</div>
+			</div>
+		</section>
 <div class="container">
 	<div class="row registre">
 		<div class="col-md-4 formRe">

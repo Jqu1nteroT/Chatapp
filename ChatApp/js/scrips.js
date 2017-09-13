@@ -28,7 +28,5 @@ function cambio(insert)
           $('#mesag').html(data); 
         }
       });
-             console.log('error!');
-
     }
 }

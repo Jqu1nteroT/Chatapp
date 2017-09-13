@@ -1,23 +1,16 @@
 <?php
-try
-    {
-    // On se connecte à MySQL
-    $bdd = new PDO('mysql:host=localhost;dbname=chat;charset=utf8', 'pablo', 'user');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(Exception $e)
-    {
-    // En cas d'erreur, on affiche un message et on arrête tout
-          die('Erreur : '.$e->getMessage());
-    }
+include('conexion.php');
     
 	$id = $_SESSION["user"];
 
     $resultat = $bdd->query("SELECT * FROM users WHERE idusers ='$id' ");
        $donnees = $resultat->fetch();
+
+    $resultat1 = $bdd->query("SELECT * FROM users");
+       $donnees1 = $resultat1->fetch();
  ?>
 
-<section id="chat">
+<section id="chat" style="border: 1px solid blue; margin: 1px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-10 test">
@@ -36,9 +29,12 @@ try
 			<div class="col-xs-12 col-sm-12 col-md-2 option">
 				<div class="col-xs-6 col-sm-6 col-md-12 lateral" >
 					<div class="avatar" style="background-image:url('<?= $donnees['image']?>');"></div>
-					<h1><?= $donnees['login']?></h1>
+					<h1><?= $donnees['login'];?></h1>
 				</div>
-				<div class="col-xs-6 col-sm-6 col-md-12 lateral">Conectados</div>
+				<div class="col-xs-6 col-sm-6 col-md-12 lateral">
+					<h1>Friends:</h1>
+					<b><?= $donnees1['login']?></b>
+				</div>
 			</div>
 		</div>
 	</div>
