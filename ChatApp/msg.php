@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 try
     {
     // On se connecte à MySQL
@@ -16,24 +15,19 @@ try
     if (isset($_POST['usermsg'])) {
     	$resultat = $bdd->exec('INSERT INTO msg (`contenu`,`date`,`idusers`) VALUES ('.$bdd->quote($_POST["usermsg"]).', NOW(),'.
     	$bdd->quote($_SESSION['user']).')');
-    }    
-    if (isset($_POST['usermsg'])) {
+    }  
         $id = $_SESSION['user'];
-        $resultat = $bdd->query("SELECT * FROM msg,users where users.idusers = msg.idusers ORDER BY date ASC");
+        $resultat = $bdd->query("SELECT * FROM msg,users where users.idusers = msg.idusers ORDER BY date DESC");
          $x = array();
     while ($donne = $resultat->fetch()) {
         $x[] = $donne;
     }
 
-/*     $resultat1 = $bdd->query("SELECT * FROM users WHERE idusers ='$id' ");
-       $donnees = $resultat1->fetch();*/
-
     foreach ($x as $row) {
         ?>
-    <div style="border: 1px solid red; width: 700px; padding: 15px; border-radius: 50px; word-wrap: break-word;">
+    <div class="AreaMsg">
         <?php echo $row['login']."&nbsp;".$row['date']."&nbsp;".$row['contenu']."&nbsp;<br>";?>
     </div>        
 <?php   
      }
-    }
 ?>
