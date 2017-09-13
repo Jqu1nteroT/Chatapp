@@ -5,7 +5,7 @@ $action = !empty($_GET['action'])?$_GET['action'] : 'default';
 
 switch ($action) {
 	case 'registrer':
-		require_once 'headerOff.php';
+		//require_once 'headerOff.php';
 		require_once 'registrer.php';
 		break;
 

@@ -19,11 +19,11 @@ body{
 	padding: 0;
 }
 .navbar{
-	margin-bottom: 0;
+	margin: 0;
 }
 #footer{
 	padding: auto;
-	position: fixed;
+	position: relative;
 	width: 100%;
 	height: auto;
 	background-color: #F8F8F8;
@@ -70,6 +70,9 @@ body{
 	margin-top: 1px;
 	height: 215px;
 	text-align: center;
+}
+.lateral b{
+	text-align: left;
 }
 .avatar{
 	border:1px solid red;
